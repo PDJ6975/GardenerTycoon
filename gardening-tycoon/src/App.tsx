@@ -1,26 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useGameState } from './hooks/useGameState'
+import { TerrainCanvas } from './components/TerrainCanvas'
 import eggImg from './assets/clicker-panel/egg.png'
-import coinImg from './assets/clicker-panel/coin.png'
 import './App.css'
 
 function App() {
-  const [coins, setCoins] = useState(() => {
-    const saved = localStorage.getItem('gardening-tycoon-coins')
-    return saved ? parseInt(saved, 10) : 0
-  })
-
-  useEffect(() => {
-    localStorage.setItem('gardening-tycoon-coins', coins.toString())
-  }, [coins])
+  const { coins, layout, setLayout, setCoins } = useGameState()
 
   return (
     <div className="game-layout">
       <div className="column column-left">
         <div className="coins-section">
-          <div className="coins-display">
-            <img src={coinImg} alt="Coin" className="coin-icon" />
-            <span>{coins}</span>
-          </div>
+          <div className="coins-display">🪙 {coins}</div>
           <div className="coin-button-wrapper">
             <button
               className="coin-button"
@@ -32,6 +22,7 @@ function App() {
         </div>
       </div>
       <div className="column column-center">
+        <TerrainCanvas layout={layout} onLayoutChange={setLayout} />
       </div>
       <div className="column column-right">
       </div>

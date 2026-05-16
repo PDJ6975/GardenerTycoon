@@ -1,7 +1,7 @@
 .game-layout {
   display: flex;
   width: 100%;
-  min-height: 100svh;
+  height: 100svh;
 }
 
 .column {
@@ -17,6 +17,13 @@
 .column-center {
   flex: 3;
   background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .column-right {
@@ -74,4 +81,63 @@
   width: 180px;
   height: auto;
   display: block;
+}
+
+/* Terrain Grid */
+.terrain-canvas {
+  width: 100%;
+  min-height: 100%;
+  background-color: #3b2f2f;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  border-radius: 12px;
+  border: 2px solid #5c4033;
+  padding: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.terrain-plot {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.plot-soil {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6d4c41 0%, #5d4037 100%);
+  border: 2px dashed #8d6e63;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  transition: box-shadow 0.2s ease;
+}
+
+.react-grid-item:hover .plot-soil {
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+  border-color: #a1887f;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: rgba(129, 199, 132, 0.3) !important;
+  border: 2px dashed #81c784 !important;
+  border-radius: 8px !important;
+  opacity: 1 !important;
+}
+
+.plot-label {
+  color: #d7ccc8;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  user-select: none;
 }
