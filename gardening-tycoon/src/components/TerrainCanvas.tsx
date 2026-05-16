@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useMemo } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import ReactGridLayout from 'react-grid-layout/legacy'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
@@ -6,7 +6,7 @@ import type { GridItem } from '../types/store'
 
 const ROW_HEIGHT = 60
 const MARGIN: [number, number] = [4, 4]
-const CONTAINER_PADDING: [number, number] = [4, 4]
+const CONTAINER_PADDING: [number, number] = [4, 0]
 
 interface TerrainCanvasProps {
   layout: GridItem[]
@@ -34,18 +34,8 @@ export function TerrainCanvas({ layout, onLayoutChange }: TerrainCanvasProps) {
     return () => observer.disconnect()
   }, [])
 
-  const maxRows = useMemo(() => {
-    if (containerSize.height === 0) return Infinity
-    // Formula: availableHeight = height - 2*paddingY
-    // Each row occupies: rowHeight + marginY
-    // maxRows = floor(availableHeight / (rowHeight + marginY))
-    const availableHeight = containerSize.height - CONTAINER_PADDING[1] * 2
-    const rowOccupancy = ROW_HEIGHT + MARGIN[1]
-    return Math.max(1, Math.floor(availableHeight / rowOccupancy))
-  }, [containerSize.height])
-
   return (
-    <div ref={containerRef} style={{ width: '100%', flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+    <div ref={containerRef} style={{ width: '100%', flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {containerSize.width > 0 && (
         <ReactGridLayout
           className="layout"
@@ -55,12 +45,13 @@ export function TerrainCanvas({ layout, onLayoutChange }: TerrainCanvasProps) {
           rowHeight={ROW_HEIGHT}
           margin={MARGIN}
           containerPadding={CONTAINER_PADDING}
-          maxRows={maxRows}
           autoSize={false}
           isDraggable={true}
           isResizable={false}
+          isBounded={true}
           preventCollision={true}
           compactType={null}
+          style={{ height: containerSize.height }}
           onLayoutChange={(newLayout) => onLayoutChange(newLayout as GridItem[])}
         >
           {layout.map((item) => (
