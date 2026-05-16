@@ -5,26 +5,22 @@
 }
 
 .column {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--border);
-  box-sizing: border-box;
-}
-
-.column:last-child {
-  border-right: none;
 }
 
 .column-left {
+  flex: 1;
   background: var(--code-bg);
 }
 
 .column-center {
+  flex: 3;
   background: var(--bg);
 }
 
 .column-right {
+  flex: 1;
   background: var(--code-bg);
 }
 
@@ -32,9 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   flex: 1;
-  gap: 24px;
 }
 
 .coins-display {
@@ -42,27 +36,42 @@
   font-weight: 700;
   color: var(--text-h);
   font-family: var(--mono);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coin-icon {
+  width: 40px;
+  height: auto;
+}
+
+.coin-button-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .coin-button {
-  font-size: 18px;
-  font-weight: 600;
-  padding: 14px 28px;
-  border-radius: 12px;
-  border: 2px solid var(--accent);
-  background: var(--accent-bg);
-  color: var(--accent);
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: var(--sans);
+  transition: transform 0.15s ease;
+  padding: 0;
 }
 
 .coin-button:hover {
-  background: var(--accent);
-  color: white;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .coin-button:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
+}
+
+.coin-button img {
+  width: 180px;
+  height: auto;
+  display: block;
 }
