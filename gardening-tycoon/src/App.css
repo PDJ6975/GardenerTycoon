@@ -1,0 +1,68 @@
+.game-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100svh;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.column:last-child {
+  border-right: none;
+}
+
+.column-left {
+  background: var(--code-bg);
+}
+
+.column-center {
+  background: var(--bg);
+}
+
+.column-right {
+  background: var(--code-bg);
+}
+
+.coins-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 24px;
+}
+
+.coins-display {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-h);
+  font-family: var(--mono);
+}
+
+.coin-button {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--sans);
+}
+
+.coin-button:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.05);
+}
+
+.coin-button:active {
+  transform: scale(0.98);
+}
